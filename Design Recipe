@@ -1,0 +1,152 @@
+1. Describe the Problem
+Put or write the user story here. Add any clarifying notes you might have.
+
+As a user
+So that I can record my experiences
+I want to keep a regular diary
+
+As a user
+So that I can reflect on my experiences
+I want to read my past diary entries
+
+As a user
+So that I can reflect on my experiences in my busy day
+I want to select diary entries to read based on how much time I have and my reading speed
+
+As a user
+So that I can keep track of my tasks
+I want to keep a todo list along with my diary
+
+As a user
+So that I can keep track of my contacts
+I want to see a list of all of the mobile phone numbers in all my diary entries
+
+2. Design the Class System
+
+
+┌──────────────────────────────────────────┐
+│   Class Diary                            │
+│   -----------                            │
+│                                          ├───────────┐
+│   add_record(entry)                      │           │
+│                                          │           │
+│   all_records                            │           │
+│                                          │           │
+│   specific_record(time, wpm)             │           │
+│                                          │           │
+│   all_tasks                              │           │
+│                                          │           │
+└────────────────────▲─────────────────────┘           │
+                     │                                 │
+                     │                                 │
+                     │                                 │
+┌────────────────────┴─────────────────────┐           │
+│                                          │           │
+│   Class Tasks                            │           │
+│   ----------                             │           │
+│                                          │           │
+│   add(item)                              │           │
+│                                          │           │
+│   all                                    │           │
+│                                          │           │
+│   complete                               │           │
+│                                          │           │
+└──────────────────────────────────────────┘           │
+                                                       │
+                                                       │
+                                                       │
+┌──────────────────────────────────────────┐           │
+│                                          │           │
+│   Class Contacts                         │           │
+│   --------------                         │           │
+│                                          │           │
+│   all_numbers(all_records)               │           │
+│                                          ◄───────────┘
+│                                          │
+│                                          │
+│                                          │
+└──────────────────────────────────────────┘
+
+
+Also design the interface of each class in more detail.
+
+class Diary 
+    def add_record(entry) 
+    #Entry is a string
+    end
+
+    def all_records
+    # it should return all the diary records in chronological order
+    end
+
+    def specific_record(wpm,time)
+    #Should return a diary entry where the total number of words in that entry is closest to the inputted wpm * time
+    end
+
+    def all_tasks(Tasks) 
+    #takes and returns Tasks.all
+    end
+end
+
+
+    class Tasks                             
+
+    def add(item)   
+    #item is a string (which is a task)
+    end
+
+    def all         
+    #Takes no params, returns all the Tasks (without those that have been completed)
+    end
+
+    def complete   
+    #When called on an item, this method removes the item from the list
+    end
+end 
+
+    class Contacts
+
+    def all_numbers(all_records)
+    #Takes all the diary entries as an argument, parses it, and returns any 11 digit numbers it finds
+    end
+end
+
+3. Create Examples as Integration Tests
+Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
+
+class Diary
+#1 Make sure all_tasks returns all the tasks in the Tasks class (without those that have been marked as complete)
+
+class Contacts
+    #1 Make sure all_numbers takes the diary records as an argument
+    #1 Make sure all_numbers takes an argument, throw an error if it does not
+
+4. Create Examples as Unit Tests
+
+Create examples, where appropriate, of the behaviour of each relevant class at a more granular level of detail.
+Encode each example as a test. You can add to the above list as you go.
+
+class Diary
+#1 If no args are passed into the add_record method, an error will be thrown.------------ DONE
+
+#2 If the entry arg is passed into the add_record method, the entry gets added to all_records.------------ DONE
+
+#3 When all_records is called, make sure all the records are in a list.------------ DONE
+
+#4 When the total words readable is more that the diary entries word count, it should not be evaluated. If the total words readable is equal 
+#to a diary entries word count, it should return that diary entry, else, it should return the closest diary entry to the total words readable.
+
+#5 If no wpm or time is passed in, throw an error
+
+
+class Tasks 
+#1 If no args are passed into add_tasks, then throw an error. 
+#2 If a task is passed as an arg, add it to the #all method
+#3 Make sure the #all method returns all the values minus those that #complete have been called on
+#4 Make sure #complete removes tasks from the list of tasks
+
+
+5. Implement the Behaviour
+After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour.
+
+
