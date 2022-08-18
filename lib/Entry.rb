@@ -4,7 +4,8 @@ class Entry
     end
 
     def return 
-    @entry
+        @entries
     end  
+
 end
 
